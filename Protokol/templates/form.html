@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formularz</title>
+</head>
+<body>
+    <h1>Protokół Oględzin Miejsca Zdarzenia</h1>
+    <form method="POST">
+        {{ form.csrf_token }}
+        <div>
+            {{ form.oswietlenie.label }}: {{ form.oswietlenie }}
+        </div>
+        <div>
+            {{ form.pogoda.label }}: {{ form.pogoda }}
+        </div>
+        <div>
+            {{ form.pora.label }}: {{ form.pora }}
+        </div>
+        
+        <div>
+            <input type="submit" value="Wyślij">
+        </div>
+    </form>
+</body>
+</html>
