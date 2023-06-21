@@ -8,15 +8,17 @@
     <form method="POST">
         {{ form.csrf_token }}
         <div>
-            {{ form.oswietlenie.label }}: {{ form.oswietlenie }}
+            {{ form.rodzaj.label }}: {{ form.rodzaj }}
         </div>
         <div>
-            {{ form.pogoda.label }}: {{ form.pogoda }}
+            {{ form.miejsce.label }}: {{ form.miejsce }}
         </div>
         <div>
             {{ form.pora.label }}: {{ form.pora }}
         </div>
-        
+        <div>
+            {{ form.bron.label }}: {{ form.bron }}
+        </div>
         <div>
             <input type="submit" value="Wyślij">
         </div>
