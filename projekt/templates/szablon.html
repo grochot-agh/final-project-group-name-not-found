@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css1.css') }}">
+    <title>Wyszukaj przestępstwo</title>
+</head>
+<body>
+    <h1>Wyszukaj Przestępstwo</h1>
+    <form action="/tabela" method="POST">
+        <div>
+            <label for="rodzaj">Rodzaj Przestępstwa:</label>
+            <select id="rodzaj" name="rodzaj" required>
+                <option value="">Wybierz rodzaj</option>
+                <option value="Kradziez">Kradzież</option>
+                <option value="Napad">Napad</option>
+                <option value="Zabojstwo">Zabójstwo</option>
+                <option value="przemoc fizyczna">Przemoc Fizyczna</option>
+                
+            </select>
+        </div>
+        <div>
+            <label for="miejsce">Miejsce Popełnienia Przestępstwa:</label>
+            <select id="miejsce" name="miejsce" required>
+                <option value="">Wybierz miejsce</option>
+                <option value="na ulicy">na ulicy</option>
+                <option value="dom/ mieszkanie">dom/mieszkanie</option>
+                <option value="miejsce publiczne">miejsce publiczne</option>
+                
+            </select>
+        </div>
+        <div>
+            <label for="pora">Pora Popełnienia Przestępstwa:</label>
+            <select id="pora" name="pora" required>
+                <option value="">Wybierz porę</option>
+                <option value="Dzienna">Dzienna</option>
+                <option value="Nocna">Nocna</option>
+                <option value="Zmierzch">Zmierzch</option>
+                <option value="Świt">Świt</option>
+                
+            </select>
+        </div>
+        <div>
+            <label for="bron">Czy przestępca używał broni:</label>
+            <select id="bron" name="bron" required>
+                <option value="">Wybierz</option>
+                <option value="tak">Tak</option>
+                <option value="nie">Nie</option>
+                
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="OK">
+        </div>
+    </form>
+
+</body>
+</html>
