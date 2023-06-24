@@ -8,6 +8,7 @@ body {
 h1 {
     text-align: center;
     color: #333;
+    font-weight: bold;
 }
 
 form {
@@ -49,4 +50,43 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #45a049;
+}
+footer {
+    height: 50px;
+    background-color: rgb(82, 148, 126);
+    border-top: 2px solid black;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+* {
+    font-weight: 100;
+    text-decoration: none;
+    color: black;
+}
+
+header {
+    font-family: Verdana;
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    background-color: #63a690; 
+    
 }
