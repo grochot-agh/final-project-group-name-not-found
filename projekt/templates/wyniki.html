@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Wyniki wyszukiwania</title>
+</head>
+<body>
+    <h1>Wyniki wyszukiwania</h1>
+    {% if przestepcy %}
+        <table>
+            <tr>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+            </tr>
+            {% for przestepca in przestepcy %}
+                <tr>
+                    <td>{{ przestepca[0] }}</td>
+                    <td>{{ przestepca[1] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Nie znaleziono pasujących przestępstw.</p>
+    {% endif %}
+</body>
+</html>
