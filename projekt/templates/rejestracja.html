@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Rejestracja</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Rejestracja</h1>
+    {% if error %}
+    <p class="error">Użytkownik o podanej nazwie już istnieje.</p>
+    {% endif %}
+    
+    <form method="POST" action="{{ url_for('rejestracja') }}">
+        <label for="username">Nazwa użytkownika:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Hasło:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Zarejestruj</button>
+    </form>
+    <p>Masz już konto? <a href="{{ url_for('logowanie') }}">Zaloguj się</a></p>
+</body>
+</html>

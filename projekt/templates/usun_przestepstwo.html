@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Usuń przestępstwo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Usuń przestępstwo</h1>
+    <form method="POST" action="{{ url_for('usun_przestepstwo') }}">
+        <label for="nazwisko">Nazwisko przestępcy:</label>
+        <input type="text" id="nazwisko" name="nazwisko" required>
+        <button type="submit">Usuń</button>
+    </form>
+</body>
+</html>
+
