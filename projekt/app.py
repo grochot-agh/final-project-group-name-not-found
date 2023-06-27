@@ -110,11 +110,37 @@ def szukaj_przestepstwa():
             miejsce = request.form["miejsce"]
             pora = request.form["pora"]
             bron = request.form["bron"]
-
+            sort = request.form["sort"]
+            rodzaj_weight = 0.5
+            miejsce_weight = 0.3
+            pora_weight = 0.1
+            bron_weight = 0.2
             # Wyszukiwanie pasujących przestępców
             cursor = connection.cursor()
-            sql = "SELECT Przestępstwa.imie, Przestępstwa.nazwisko FROM Przestępstwa WHERE Przestępstwa.rodzaj = %s AND Przestępstwa.miejsce = %s AND Przestępstwa.pora = %s AND Przestępstwa.bron = %s"
-            val = (rodzaj, miejsce, pora, bron)
+            
+            sql = "SELECT Przestępstwa.imie, Przestępstwa.nazwisko, " \
+                  "(%s * (Przestępstwa.rodzaj = %s)) + " \
+                  "(%s * (Przestępstwa.miejsce = %s)) + " \
+                  "(%s * (Przestępstwa.pora = %s)) + " \
+                  "(%s * (Przestępstwa.bron = %s)) AS relevance " \
+                  "FROM Przestępstwa " \
+                  "WHERE (Przestępstwa.rodzaj = %s OR Przestępstwa.miejsce = %s OR Przestępstwa.pora = %s OR Przestępstwa.bron = %s)"
+
+            val = (rodzaj_weight, rodzaj,
+                   miejsce_weight, miejsce,
+                   pora_weight, pora,
+                   bron_weight, bron,
+                   rodzaj, miejsce, pora, bron)
+            print(val)
+            if sort == 'relevance':
+                sql += " ORDER BY relevance DESC"
+            elif sort == 'oldest':
+                sql += " ORDER BY Przestępstwa.data_przestepstwa ASC"
+            elif sort == 'newest':
+                sql += " ORDER BY Przestępstwa.data_przestepstwa DESC"
+            elif sort == 'alphabetical':
+                sql += " ORDER BY Przestępstwa.nazwisko ASC"
+
             cursor.execute(sql, val)
             przestepcy = cursor.fetchall()
             cursor.close()

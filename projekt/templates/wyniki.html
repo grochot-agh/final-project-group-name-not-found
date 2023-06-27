@@ -11,11 +11,13 @@
             <tr>
                 <th>Imię</th>
                 <th>Nazwisko</th>
+                <th>Waga</th>
             </tr>
             {% for przestepca in przestepcy %}
                 <tr>
                     <td>{{ przestepca[0] }}</td>
                     <td>{{ przestepca[1] }}</td>
+                    <td>{{ przestepca[2] }}</td>
                 </tr>
             {% endfor %}
         </table>
