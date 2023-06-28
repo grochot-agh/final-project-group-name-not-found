@@ -3,42 +3,64 @@
 <head>
     <meta charset="utf-8">
     <title>Wyniki wyszukiwania</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wyniki.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@200&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <div class="header-text">
+            <h1><span class="header-text">CrimeMatch</span></h1>
+        </div>
+        <button class="menu-toggle">Menu</button>
+        <nav class="nav-links">
+            <a href="#">Strona główna</a>
+            <a href="{{ url_for('szukaj_przestepstwa') }}">Wyszukaj Przestępstwo</a>
+            <a href="{{ url_for('dodaj_przestepce') }}">Dodaj Przestępstwo</a>
+            <a href="{{ url_for('wyloguj') }}">Wyloguj</a>
+        </nav>
+    </header>
+    
     <h1>Wyniki wyszukiwania</h1>
     {% if przestepcy %}
+    <form action="/sorting" method="POST">
+        <div>
+            <label for="sort">Sortowanie</label>
+            <select id="sort" name="sort" required>
+                <option value="" disabled selected hidden style="display: none;">Wybierz</option>
+                <option value="newest">Od najnowszych</option>
+                <option value="oldest">Od najstarszych</option>
+                <option value="alphabetical">Alfabetycznie</option>
+                <option value="relevance">Najlepsze dopasowanie</option>                
+            </select>
+        </div>
+        <div style="margin-top: 20px;"> 
+            <input type="submit" value="OK">
+        </div>
+    </form>
         <table>
             <tr>
-                <th>Imię</th>
                 <th>Nazwisko</th>
+                <th>Imie</th>
                 <th>Data</th>
             </tr>
             {% for przestepca in przestepcy %}
                 <tr>
-                    <td>{{ przestepca[0] }}</td>
                     <td>{{ przestepca[1] }}</td>
+                    <td>{{ przestepca[0] }}</td>
                     <td>{{ przestepca[2] }}</td>
-                    <td>{{ przestepca[3] }}</td>
+                    <!-- <td>{{ przestepca[3] }}</td> -->
                 </tr>
             {% endfor %}
         </table>
-        <form action="/sorting" method="POST">
-            <div>
-                <label for="sort">Sortowanie</label>
-                <select id="sort" name="sort" required>
-                    <option value="" disabled selected hidden style="display: none;">Wybierz</option>
-                    <option value="newest">Od najnowszych</option>
-                    <option value="oldest">Od najstarszych</option>
-                    <option value="alphabetical">Alfabetycznie</option>
-                    <option value="relevance">Najlepsze dopasowanie</option>                
-                </select>
-            </div>
-            <div>
-                <input type="submit" value="OK">
-            </div>
-        </form>
+        
     {% else %}
         <p>Nie znaleziono pasujących przestępstw.</p>
     {% endif %}
+    <footer>
+        <p>Projekt i wykonanie:</p>
+        <p>group name not found</p>
+    </footer>
 </body>
 </html>
