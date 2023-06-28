@@ -10,44 +10,46 @@
     <form action="/szukaj" method="POST">
 
         <div>
-            <label for="rodzaj">Rodzaj Przestępstwa:</label>
+            <label for="rodzaj">Rodzaj przestępstwa:</label>
             <select id="rodzaj" name="rodzaj" required>
-                <option value="">Wybierz rodzaj</option>
-                <option value="Kradziez">Kradzież</option>
-                <option value="Napad">Napad</option>
-                <option value="Zabojstwo">Zabójstwo</option>
-                <option value="przemoc fizyczna">Przemoc Fizyczna</option>
+                <option value="" disabled selected hidden style="display: none;">Wybierz rodzaj</option>
+                <option value="kradziez">Kradzież</option>
+                <option value="napad">Napad</option>
+                <option value="zabojstwo">Zabójstwo</option>
+                <option value="przemoc">Przemoc</option>
+                <option value="oszustwo">Oszustwo</option>
+                <option value="narkotyki">Narkotyki</option>
                 
             </select>
         </div>
         <div>
-            <label for="miejsce">Miejsce Popełnienia Przestępstwa:</label>
+            <label for="miejsce">Miejsce popełnienia przestępstwa:</label>
             <select id="miejsce" name="miejsce" required>
-                <option value="">Wybierz miejsce</option>
-                <option value="na ulicy">na ulicy</option>
-                <option value="dom/ mieszkanie">dom/mieszkanie</option>
-                <option value="miejsce publiczne">miejsce publiczne</option>
+                <option value="" disabled selected hidden style="display: none;">Wybierz miejsce</option>
+                <option value="ulica">Ulica</option>
+                <option value="dom/mieszkanie">Dom/mieszkanie</option>
+                <option value="miejsce publiczne">Miejsce publiczne</option>
+                <option value="samochod">Samochód</option>
                 
             </select>
         </div>
         <div>
-            <label for="pora">Pora Popełnienia Przestępstwa:</label>
+            <label for="pora">Pora popełnienia przestępstwa:</label>
             <select id="pora" name="pora" required>
-                <option value="">Wybierz porę</option>
-                <option value="Dzienna">Dzienna</option>
-                <option value="Nocna">Nocna</option>
-                <option value="Zmierzch">Zmierzch</option>
-                <option value="Świt">Świt</option>
+                <option value="" disabled selected hidden style="display: none;">Wybierz porę</option>
+                <option value="rano">Rano</option>
+                <option value="popoludnie">Popołudnie</option>
+                <option value="wieczor">Wieczór</option>
+                <option value="noc">Noc</option>
                 
             </select>
         </div>
         <div>
             <label for="bron">Czy przestępca używał broni:</label>
             <select id="bron" name="bron" required>
-                <option value="">Wybierz</option>
+                <option value="" disabled selected hidden style="display: none;">Wybierz</option>
                 <option value="tak">Tak</option>
                 <option value="nie">Nie</option>
-                
             </select>
         </div>
         <div>
