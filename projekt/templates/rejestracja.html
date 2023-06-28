@@ -3,21 +3,40 @@
 <head>
     <meta charset="utf-8">
     <title>Rejestracja</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logowanie.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@200&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <div class="header-text">
+            <h1><span class="header-text">CrimeMatch</span></h1>
+        </div>
+        <button class="menu-toggle">Menu</button>
+        <nav class="nav-links">
+            <a href="#">Strona główna</a>
+            <a href="{{ url_for('szukaj_przestepstwa') }}">Wyszukaj Przestępstwo</a>
+            <a href="{{ url_for('dodaj_przestepce') }}">Dodaj Przestępstwo</a>
+            <!-- <a href="{{ url_for('wyloguj') }}">Wyloguj</a> -->
+        </nav>
+    </header>
     <h1>Rejestracja</h1>
     {% if error %}
     <p class="error">Użytkownik o podanej nazwie już istnieje.</p>
     {% endif %}
     
     <form method="POST" action="{{ url_for('rejestracja') }}">
-        <label for="username">Nazwa użytkownika:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Hasło:</label>
-        <input type="password" id="password" name="password" required>
+        <label for="username">Nazwa użytkownika:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Hasło:</label><br>
+        <input type="password" id="password" name="password" required><br>
         <button type="submit">Zarejestruj</button>
     </form>
-    <p>Masz już konto? <a href="{{ url_for('logowanie') }}">Zaloguj się</a></p>
+    <p>Masz już konto? <a href="{{ url_for('logowanie') }}"style="color: white;">Zaloguj się</a></p> 
+    <footer>
+        <p>Projekt i wykonanie:</p>
+        <p>group name not found</p>
+    </footer>
 </body>
 </html>
