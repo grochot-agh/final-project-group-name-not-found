@@ -110,13 +110,14 @@ def szukaj_przestepstwa():
             miejsce = request.form["miejsce"]
             pora = request.form["pora"]
             bron = request.form["bron"]
+            #wagi do sortowania
             rodzaj_weight = 0.4
             miejsce_weight = 0.3
             pora_weight = 0.1
             bron_weight = 0.2
             # Wyszukiwanie pasujących przestępców
             cursor = connection.cursor()
-            
+            #ustawienie wartości jako relevance do sort by relevance
             sql = "SELECT Przestępstwa.imie, Przestępstwa.nazwisko, Przestępstwa.data_przestepstwa, " \
                   "(%s * (Przestępstwa.rodzaj = %s)) + " \
                   "(%s * (Przestępstwa.miejsce = %s)) + " \
@@ -126,13 +127,12 @@ def szukaj_przestepstwa():
                   "WHERE (Przestępstwa.rodzaj = %s OR Przestępstwa.miejsce = %s OR Przestępstwa.pora = %s OR Przestępstwa.bron = %s) " \
                   "ORDER BY relevance DESC"
 
-
+            
             val = (rodzaj_weight, rodzaj,
                    miejsce_weight, miejsce,
                    pora_weight, pora,
                    bron_weight, bron,
                    rodzaj, miejsce, pora, bron)
-            print(val)
 
             cursor.execute(sql, val)
             przestepcy = cursor.fetchall()
@@ -142,7 +142,8 @@ def szukaj_przestepstwa():
         return render_template("szukaj.html")
     else:
         return redirect(url_for('logowanie'))
-    
+
+#sortowanie w wyniki.html    
 @app.route('/sorting', methods=['GET', 'POST'])
 def sorting():
     if 'logged_in' in session and session['logged_in']:
@@ -151,7 +152,7 @@ def sorting():
             cursor = connection.cursor()
             sql = "SELECT Przestępstwa.imie, Przestępstwa.nazwisko, Przestępstwa.data_przestepstwa " \
                   "FROM Przestępstwa"
-
+        #sortowanie wg kryteriów
             if sort == 'oldest':
                 sql += " ORDER BY Przestępstwa.data_przestepstwa ASC"
             elif sort == 'newest':
