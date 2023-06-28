@@ -2,60 +2,97 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/css1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/szukaj.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@200&display=swap" rel="stylesheet">
     <title>Wyszukaj przestępstwo</title>
 </head>
 <body>
-    <h1>Wyszukaj Przestępstwo</h1>
+    <header>
+        <div class="header-text">
+            <h1><span class="header-text">CrimeMatch</span></h1>
+        </div>
+        <button class="menu-toggle">Menu</button>
+        <nav class="nav-links">
+            <a href="#">Strona główna</a>
+            <a href="{{ url_for('szukaj_przestepstwa') }}">Wyszukaj Przestępstwo</a>
+            <a href="{{ url_for('dodaj_przestepce') }}">Dodaj Przestępstwo</a>
+            <a href="{{ url_for('wyloguj') }}">Wyloguj</a>
+        </nav>
+    </header>
+    <p></p>
+    <p></p>
     <form action="/szukaj" method="POST">
-
-        <div>
-            <label for="rodzaj">Rodzaj przestępstwa:</label>
-            <select id="rodzaj" name="rodzaj" required>
-                <option value="" disabled selected hidden style="display: none;">Wybierz rodzaj</option>
-                <option value="kradziez">Kradzież</option>
-                <option value="napad">Napad</option>
-                <option value="zabojstwo">Zabójstwo</option>
-                <option value="przemoc">Przemoc</option>
-                <option value="oszustwo">Oszustwo</option>
-                <option value="narkotyki">Narkotyki</option>
-                
-            </select>
-        </div>
-        <div>
-            <label for="miejsce">Miejsce popełnienia przestępstwa:</label>
-            <select id="miejsce" name="miejsce" required>
-                <option value="" disabled selected hidden style="display: none;">Wybierz miejsce</option>
-                <option value="ulica">Ulica</option>
-                <option value="dom/mieszkanie">Dom/mieszkanie</option>
-                <option value="miejsce publiczne">Miejsce publiczne</option>
-                <option value="samochod">Samochód</option>
-                
-            </select>
-        </div>
-        <div>
-            <label for="pora">Pora popełnienia przestępstwa:</label>
-            <select id="pora" name="pora" required>
-                <option value="" disabled selected hidden style="display: none;">Wybierz porę</option>
-                <option value="rano">Rano</option>
-                <option value="popoludnie">Popołudnie</option>
-                <option value="wieczor">Wieczór</option>
-                <option value="noc">Noc</option>
-                
-            </select>
-        </div>
-        <div>
-            <label for="bron">Czy przestępca używał broni:</label>
-            <select id="bron" name="bron" required>
-                <option value="" disabled selected hidden style="display: none;">Wybierz</option>
-                <option value="tak">Tak</option>
-                <option value="nie">Nie</option>
-            </select>
-        </div>
-        <div>
-            <input type="submit" value="OK">
-        </div>
+        <table>
+            <tr>
+                <th colspan="2" style="font-size: 24px;">Wyszukaj Przestępstwo</th>
+            </tr>
+            <tr>
+                <th><label for="rodzaj">Rodzaj przestępstwa:</label></th>
+                <td>
+                    <select id="rodzaj" name="rodzaj" required>
+                        <option value="" disabled selected hidden style="display: none;">Wybierz rodzaj</option>
+                        <option value="kradziez">Kradzież</option>
+                        <option value="napad">Napad</option>
+                        <option value="zabojstwo">Zabójstwo</option>
+                        <option value="przemoc">Przemoc</option>
+                        <option value="oszustwo">Oszustwo</option>
+                        <option value="narkotyki">Narkotyki</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="miejsce">Miejsce popełnienia przestępstwa:</label></th>
+                <td>
+                    <select id="miejsce" name="miejsce" required>
+                        <option value="" disabled selected hidden style="display: none;">Wybierz miejsce</option>
+                        <option value="ulica">Ulica</option>
+                        <option value="dom/mieszkanie">Dom/mieszkanie</option>
+                        <option value="miejsce publiczne">Miejsce publiczne</option>
+                        <option value="samochod">Samochód</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="pora">Pora popełnienia przestępstwa:</label></th>
+                <td>
+                    <select id="pora" name="pora" required>
+                        <option value="" disabled selected hidden style="display: none;">Wybierz porę</option>
+                        <option value="rano">Rano</option>
+                        <option value="popoludnie">Popołudnie</option>
+                        <option value="wieczor">Wieczór</option>
+                        <option value="noc">Noc</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="bron">Czy przestępca używał broni:</label></th>
+                <td>
+                    <select id="bron" name="bron" required>
+                        <option value="" disabled selected hidden style="display: none;">Wybierz</option>
+                        <option value="tak">Tak</option>
+                        <option value="nie">Nie</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="OK">
     </form>
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='jpg/zdjecie1.jpg') }}" alt="Zdjęcie" width="600" height="400">
+    </div>
+    <footer>
+        <p>Projekt i wykonanie:</p>
+        <p>group name not found</p>
+    </footer>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
 
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('show-menu');
+        });
+    </script>
 </body>
 </html>
