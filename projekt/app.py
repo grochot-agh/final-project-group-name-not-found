@@ -2,7 +2,7 @@ import mysql.connector
 from flask import Flask, render_template, request, redirect, url_for, session
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 app.secret_key = 'tajny_klucz_sessji'
 
 # Połączenie z bazą danych
