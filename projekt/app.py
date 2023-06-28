@@ -110,21 +110,22 @@ def szukaj_przestepstwa():
             miejsce = request.form["miejsce"]
             pora = request.form["pora"]
             bron = request.form["bron"]
-            sort = request.form["sort"]
-            rodzaj_weight = 0.5
+            rodzaj_weight = 0.4
             miejsce_weight = 0.3
             pora_weight = 0.1
             bron_weight = 0.2
             # Wyszukiwanie pasujących przestępców
             cursor = connection.cursor()
             
-            sql = "SELECT Przestępstwa.imie, Przestępstwa.nazwisko, " \
+            sql = "SELECT Przestępstwa.imie, Przestępstwa.nazwisko, Przestępstwa.data_przestepstwa, " \
                   "(%s * (Przestępstwa.rodzaj = %s)) + " \
                   "(%s * (Przestępstwa.miejsce = %s)) + " \
                   "(%s * (Przestępstwa.pora = %s)) + " \
                   "(%s * (Przestępstwa.bron = %s)) AS relevance " \
                   "FROM Przestępstwa " \
-                  "WHERE (Przestępstwa.rodzaj = %s OR Przestępstwa.miejsce = %s OR Przestępstwa.pora = %s OR Przestępstwa.bron = %s)"
+                  "WHERE (Przestępstwa.rodzaj = %s OR Przestępstwa.miejsce = %s OR Przestępstwa.pora = %s OR Przestępstwa.bron = %s) " \
+                  "ORDER BY relevance DESC"
+
 
             val = (rodzaj_weight, rodzaj,
                    miejsce_weight, miejsce,
@@ -132,14 +133,6 @@ def szukaj_przestepstwa():
                    bron_weight, bron,
                    rodzaj, miejsce, pora, bron)
             print(val)
-            if sort == 'relevance':
-                sql += " ORDER BY relevance DESC"
-            elif sort == 'oldest':
-                sql += " ORDER BY Przestępstwa.data_przestepstwa ASC"
-            elif sort == 'newest':
-                sql += " ORDER BY Przestępstwa.data_przestepstwa DESC"
-            elif sort == 'alphabetical':
-                sql += " ORDER BY Przestępstwa.nazwisko ASC"
 
             cursor.execute(sql, val)
             przestepcy = cursor.fetchall()
@@ -149,6 +142,29 @@ def szukaj_przestepstwa():
         return render_template("szukaj.html")
     else:
         return redirect(url_for('logowanie'))
+    
+@app.route('/sorting', methods=['GET', 'POST'])
+def sorting():
+    if 'logged_in' in session and session['logged_in']:
+        if request.method == 'POST':
+            sort = request.form["sort"]
+            cursor = connection.cursor()
+            sql = "SELECT Przestępstwa.imie, Przestępstwa.nazwisko, Przestępstwa.data_przestepstwa " \
+                  "FROM Przestępstwa"
+
+            if sort == 'oldest':
+                sql += " ORDER BY Przestępstwa.data_przestepstwa ASC"
+            elif sort == 'newest':
+                sql += " ORDER BY Przestępstwa.data_przestepstwa DESC"
+            elif sort == 'alphabetical':
+                sql += " ORDER BY Przestępstwa.nazwisko ASC"
+
+            cursor.execute(sql)
+            przestepcy = cursor.fetchall()
+            cursor.close()
+            return render_template("wyniki.html", przestepcy=przestepcy)
+    return redirect(url_for('logowanie'))
+
 
 
 
@@ -183,7 +199,6 @@ def formularz_usun_przestepstwo():
             return render_template("usun_przestepstwo.html")
         else:
             return "Nie masz uprawnień do usunięcia przestępstwa."
-
     return redirect(url_for('logowanie'))
 
 

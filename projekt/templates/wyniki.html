@@ -11,16 +11,32 @@
             <tr>
                 <th>Imię</th>
                 <th>Nazwisko</th>
-                <th>Waga</th>
+                <th>Data</th>
             </tr>
             {% for przestepca in przestepcy %}
                 <tr>
                     <td>{{ przestepca[0] }}</td>
                     <td>{{ przestepca[1] }}</td>
                     <td>{{ przestepca[2] }}</td>
+                    <td>{{ przestepca[3] }}</td>
                 </tr>
             {% endfor %}
         </table>
+        <form action="/sorting" method="POST">
+            <div>
+                <label for="sort">Sortowanie</label>
+                <select id="sort" name="sort" required>
+                    <option value="" disabled selected hidden style="display: none;">Wybierz</option>
+                    <option value="newest">Od najnowszych</option>
+                    <option value="oldest">Od najstarszych</option>
+                    <option value="alphabetical">Alfabetycznie</option>
+                    <option value="relevance">Najlepsze dopasowanie</option>                
+                </select>
+            </div>
+            <div>
+                <input type="submit" value="OK">
+            </div>
+        </form>
     {% else %}
         <p>Nie znaleziono pasujących przestępstw.</p>
     {% endif %}
