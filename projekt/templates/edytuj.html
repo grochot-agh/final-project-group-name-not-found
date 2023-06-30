@@ -19,7 +19,7 @@
                 <td>{{ przestepca[1] }}</td>
                 <td>{{ przestepca[2] }}</td>
                 <td>
-                    
+                     <!-- edycja tutaj przycisk -->
                     <form action="/usun_przestepce" method="post" style="display: inline;" onsubmit="return confirm('Czy na pewno chcesz usunąć?');">
                         <input type="hidden" name="id" value="{{ przestepca[0] }}">
                         <button type="submit">Usuń</button>
