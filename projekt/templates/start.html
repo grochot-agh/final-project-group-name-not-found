@@ -3,12 +3,28 @@
 <head>
     <meta charset="utf-8">
     <title>Strona powitalna</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logowanie.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@200&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <div class="header-text">
+            <h1><span class="header-text">CrimeMatch</span></h1>
+        </div>
+        <!-- <button class="menu-toggle">Menu</button>
+        <nav class="nav-links">
+            <a href="#">Strona główna</a>
+            <a href="{{ url_for('szukaj_przestepstwa') }}">Wyszukaj Przestępstwo</a>
+            <a href="{{ url_for('dodaj_przestepce') }}">Dodaj Przestępstwo</a>
+             <a href="{{ url_for('wyloguj') }}">Wyloguj</a> 
+        </nav> -->
+    </header>
+    <br><br><br>
     {% if 'username' in session %}
         <h1>Witaj, {{ session['username'] }}!</h1>
-        <a href="{{ url_for('wyloguj') }}">Wyloguj</a>
+        <a href="{{ url_for('wyloguj') }}" style="color:white">Wyloguj</a>
     {% else %}
         <h1>Strona startowa</h1>
         <!-- Inne treści strony -->
@@ -18,14 +34,21 @@
 
     <nav>
         <ul>
-            <li><a href="{{ url_for('szukaj_przestepstwa') }}">Wyszukaj przestępstwo</a></li>
-            <li><a href="{{ url_for('dodaj_przestepce') }}">Dodaj przestępcę</a></li>
+            <li><a href="{{ url_for('szukaj_przestepstwa') }}"style="color:white">Wyszukaj przestępstwo</a></li>
+            <li><a href="{{ url_for('dodaj_przestepce') }}"style="color:white">Dodaj przestępcę</a></li>
             {% if logged_in and username == 'admin' %}
-                <li><a href="{{ url_for('formularz_usun_przestepstwo') }}">Usuń przestępstwo</a></li>
+                <li><a href="{{ url_for('formularz_usun_przestepstwo') }}"style="color:white">Usuń przestępstwo</a></li>
             {% endif %}
 
         </ul>
     </nav>
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='zdjecie1.png') }}" alt="Zdjęcie" width="1200" height="800">
+    </div>
+    <footer>
+        <p>Projekt i wykonanie:</p>
+        <p>group name not found</p>
+    </footer>
 
   
 </body>
