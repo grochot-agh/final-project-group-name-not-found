@@ -235,7 +235,7 @@ def usun_przestepce():
     else:
         return redirect(url_for('logowanie'))
 
-
+#tutaj przycisk juz w edycji ktory bedzie edytowal
 
 if __name__ == '__main__':
     app.run()
