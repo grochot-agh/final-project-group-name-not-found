@@ -31,8 +31,6 @@ def zaloguj():
     password = request.form["password"]
 
     # Sprawdzanie poprawności danych logowania
-    # Tutaj można dodać kod do weryfikacji użytkownika w bazie danych
-    # Przykład: Sprawdzanie użytkownika w tabeli Użytkownicy
     cursor = connection.cursor()
     sql = "SELECT * FROM Użytkownicy WHERE username = %s AND password = %s"
     val = (username, password)
@@ -168,43 +166,6 @@ def sorting():
 
 
 
-
-@app.route('/usun', methods=['POST'])
-def usun_przestepstwo():
-    if 'logged_in' in session and session['logged_in']:
-        if session['username'] == 'admin':
-            if request.method == 'POST':
-                nazwisko = request.form["nazwisko"]
-
-                # Usunięcie przestępstwa na podstawie podanego nazwiska
-                cursor = connection.cursor()
-                sql = "DELETE FROM Przestępstwa WHERE nazwisko = %s"
-                val = (nazwisko,)
-                cursor.execute(sql, val)
-                connection.commit()
-                cursor.close()
-
-                return "Przestępstwo zostało usunięte."
-
-            return render_template("usun_przestepstwo.html")
-        else:
-            return "Nie masz uprawnień do usunięcia przestępstwa."
-
-    return redirect(url_for('logowanie'))
-
-
-@app.route('/usun_przestepstwo', methods=['GET', 'POST'])
-def formularz_usun_przestepstwo():
-    if 'logged_in' in session and session['logged_in']:
-        if session['username'] == 'admin':
-            return render_template("usun_przestepstwo.html")
-        else:
-            return "Nie masz uprawnień do usunięcia przestępstwa."
-    return redirect(url_for('logowanie'))
-
-
-
-
 @app.route('/rejestracja', methods=['GET', 'POST'])
 def rejestracja():
     if 'logged_in' in session and session['logged_in']:
@@ -237,6 +198,44 @@ def rejestracja():
         return redirect(url_for('logowanie', success=True))
 
     return render_template("rejestracja.html")
+
+
+
+
+@app.route('/edytuj', methods=['GET'])
+def edytuj():
+    if 'logged_in' in session and session['logged_in']:
+        cursor = connection.cursor()
+        sql = "SELECT id, imie, nazwisko FROM Przestępstwa"
+        cursor.execute(sql)
+        przestepcy = cursor.fetchall()
+        cursor.close()
+
+        return render_template('edytuj.html', przestepcy=przestepcy)
+    else:
+        return redirect(url_for('logowanie'))
+
+
+@app.route('/usun_przestepce', methods=['POST'])
+def usun_przestepce():
+    if 'logged_in' in session and session['logged_in']:
+        if request.method == 'POST':
+            przestepca_id = request.form["id"]
+
+            # Usunięcie wiersza na podstawie przekazanego ID
+            cursor = connection.cursor()
+            sql = "DELETE FROM Przestępstwa WHERE id = %s"
+            val = (przestepca_id,)
+            cursor.execute(sql, val)
+            connection.commit()
+            cursor.close()
+
+            # Przekierowanie na stronę edytuj.html
+            return redirect(url_for('edytuj'))
+    else:
+        return redirect(url_for('logowanie'))
+
+
 
 if __name__ == '__main__':
     app.run()
