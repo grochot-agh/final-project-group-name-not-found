@@ -19,7 +19,10 @@
                 <td>{{ przestepca[1] }}</td>
                 <td>{{ przestepca[2] }}</td>
                 <td>
-                     <!-- edycja tutaj przycisk -->
+                     <!-- nowe -->
+                     <form action="{{ url_for('edytuj_formularz', id=przestepca[0]) }}" method="post" style="display: inline;">
+                        <button type="submit">Edytuj</button>
+                    </form>
                     <form action="/usun_przestepce" method="post" style="display: inline;" onsubmit="return confirm('Czy na pewno chcesz usunąć?');">
                         <input type="hidden" name="id" value="{{ przestepca[0] }}">
                         <button type="submit">Usuń</button>

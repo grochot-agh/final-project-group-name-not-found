@@ -202,18 +202,7 @@ def rejestracja():
 
 
 
-@app.route('/edytuj', methods=['GET'])
-def edytuj():
-    if 'logged_in' in session and session['logged_in']:
-        cursor = connection.cursor()
-        sql = "SELECT id, imie, nazwisko FROM Przestępstwa"
-        cursor.execute(sql)
-        przestepcy = cursor.fetchall()
-        cursor.close()
 
-        return render_template('edytuj.html', przestepcy=przestepcy)
-    else:
-        return redirect(url_for('logowanie'))
 
 
 @app.route('/usun_przestepce', methods=['POST'])
@@ -236,6 +225,72 @@ def usun_przestepce():
         return redirect(url_for('logowanie'))
 
 #tutaj przycisk juz w edycji ktory bedzie edytowal
+@app.route('/edytuj', methods=['GET'])
+def edytuj():
+    if 'logged_in' in session and session['logged_in']:
+        cursor = connection.cursor()
+        sql = "SELECT id, imie, nazwisko FROM Przestępstwa"
+        cursor.execute(sql)
+        przestepcy = cursor.fetchall()
+        cursor.close()
+
+        return render_template('edytuj.html', przestepcy=przestepcy)
+    else:
+        return redirect(url_for('logowanie'))
+
+
+@app.route('/edytuj_formularz/<int:id>', methods=['GET', 'POST'])
+def edytuj_formularz(id):
+    if 'logged_in' in session and session['logged_in']:
+        if request.method == 'POST':
+            data_przestepstwa = request.form["data_przestepstwa"]
+            rodzaj = request.form["rodzaj"]
+            miejsce = request.form["miejsce"]
+            pora = request.form["pora"]
+            bron = request.form["bron"]
+
+            # Aktualizacja danych przestępstwa w bazie danych
+            cursor = connection.cursor()
+            sql = "UPDATE Przestępstwa SET data_przestepstwa = %s, rodzaj = %s, miejsce = %s, pora = %s, bron = %s WHERE id = %s"
+            val = (data_przestepstwa, rodzaj, miejsce, pora, bron, id)
+            cursor.execute(sql, val)
+            connection.commit()
+            cursor.close()
+
+            return redirect(url_for('edytuj_formularz', id=id))
+
+        # Pobranie danych przestępstwa do edycji
+        cursor = connection.cursor()
+        sql = "SELECT * FROM Przestępstwa WHERE id = %s"
+        val = (id,)
+        cursor.execute(sql, val)
+        przestepstwo = cursor.fetchone()
+        cursor.close()
+
+        return render_template('edytuj_formularz.html', przestepstwo=przestepstwo)
+    else:
+        return redirect(url_for('logowanie'))
+
+@app.route('/zapisz_zmiany/<int:id>', methods=['POST'])
+def zapisz_zmiany(id):
+    if 'logged_in' in session and session['logged_in']:
+        if request.method == 'POST':
+            imie = request.form["imie"]
+            nazwisko = request.form["nazwisko"]
+
+            # Aktualizacja danych przestępcy w bazie danych
+            cursor = connection.cursor()
+            sql = "UPDATE Przestępcy SET imie = %s, nazwisko = %s WHERE id = %s"
+            val = (imie, nazwisko, id)
+            cursor.execute(sql, val)
+            connection.commit()
+            cursor.close()
+
+            return redirect(url_for('edytuj_formularz', id=id))
+    else:
+        return redirect(url_for('logowanie'))
+
+
 
 if __name__ == '__main__':
     app.run()
