@@ -5,7 +5,7 @@
 <br>
 
 <p align="center">
-<img src=""  alt="Logo">
+<img src="https://github.com/grochot-agh/final-project-group-name-not-found/blob/main/projekt/static/finger.png"  alt="Logo">
 </p>
 
 <br>
