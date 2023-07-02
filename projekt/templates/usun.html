@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Edycja przestępców</title>
+    <title>Usuń przestępcę</title>
 </head>
 <body>
-    <h1>Edycja przestępców</h1>
+    <h1>Usuń przestępcę</h1>
     <table>
         <tr>
             <th>ID</th>
@@ -19,10 +19,6 @@
                 <td>{{ przestepca[1] }}</td>
                 <td>{{ przestepca[2] }}</td>
                 <td>
-                     <!-- nowe -->
-                     <form action="{{ url_for('edytuj_formularz', id=przestepca[0]) }}" method="post" style="display: inline;">
-                        <button type="submit">Edytuj</button>
-                    </form>
                     <form action="/usun_przestepce" method="post" style="display: inline;" onsubmit="return confirm('Czy na pewno chcesz usunąć?');">
                         <input type="hidden" name="id" value="{{ przestepca[0] }}">
                         <button type="submit">Usuń</button>
