@@ -31,8 +31,6 @@ def zaloguj():
     password = request.form["password"]
 
     # Sprawdzanie poprawności danych logowania
-    # Tutaj można dodać kod do weryfikacji użytkownika w bazie danych
-    # Przykład: Sprawdzanie użytkownika w tabeli Użytkownicy
     cursor = connection.cursor()
     sql = "SELECT * FROM Użytkownicy WHERE username = %s AND password = %s"
     val = (username, password)
@@ -82,19 +80,29 @@ def dodaj_przestepce():
             pora = request.form["pora"]
             bron = request.form["bron"]
 
-            # Dodanie danych przestępcy do tabeli Przestępstwa
+            # Pobierz najwyższe istniejące ID przestępców
             cursor = connection.cursor()
-            sql = "INSERT INTO Przestępstwa (imie, nazwisko, wiek, miejsce_zamieszkania, data_przestepstwa, rodzaj, miejsce, pora, bron) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            val = (imie, nazwisko, wiek, miejsce_zamieszkania, data_przestepstwa, rodzaj, miejsce, pora, bron)
+            sql = "SELECT MAX(id) FROM Przestępstwa"
+            cursor.execute(sql)
+            max_id = cursor.fetchone()[0]
+            cursor.close()
+
+            # Przypisz kolejne ID na podstawie najwyższego istniejącego ID
+            if max_id is None:
+                przestepca_id = 1
+            else:
+                przestepca_id = max_id + 1
+
+            # Dodaj dane przestępcy do tabeli Przestępstwa z nowym ID
+            cursor = connection.cursor()
+            sql = "INSERT INTO Przestępstwa (id, imie, nazwisko, wiek, miejsce_zamieszkania, data_przestepstwa, rodzaj, miejsce, pora, bron) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            val = (przestepca_id, imie, nazwisko, wiek, miejsce_zamieszkania, data_przestepstwa, rodzaj, miejsce, pora, bron)
             cursor.execute(sql, val)
             connection.commit()
 
-            # Pobranie ID dodanego przestępcy
-            id = cursor.lastrowid
-
             cursor.close()
 
-            return "Dziękujemy za przesłanie formularza! Przestępstwo zostało dodane do bazy danych."
+            return render_template("dodano.html")
 
         return render_template("dodaj.html")
     else:
@@ -168,43 +176,6 @@ def sorting():
 
 
 
-
-@app.route('/usun', methods=['POST'])
-def usun_przestepstwo():
-    if 'logged_in' in session and session['logged_in']:
-        if session['username'] == 'admin':
-            if request.method == 'POST':
-                nazwisko = request.form["nazwisko"]
-
-                # Usunięcie przestępstwa na podstawie podanego nazwiska
-                cursor = connection.cursor()
-                sql = "DELETE FROM Przestępstwa WHERE nazwisko = %s"
-                val = (nazwisko,)
-                cursor.execute(sql, val)
-                connection.commit()
-                cursor.close()
-
-                return "Przestępstwo zostało usunięte."
-
-            return render_template("usun_przestepstwo.html")
-        else:
-            return "Nie masz uprawnień do usunięcia przestępstwa."
-
-    return redirect(url_for('logowanie'))
-
-
-@app.route('/usun_przestepstwo', methods=['GET', 'POST'])
-def formularz_usun_przestepstwo():
-    if 'logged_in' in session and session['logged_in']:
-        if session['username'] == 'admin':
-            return render_template("usun_przestepstwo.html")
-        else:
-            return "Nie masz uprawnień do usunięcia przestępstwa."
-    return redirect(url_for('logowanie'))
-
-
-
-
 @app.route('/rejestracja', methods=['GET', 'POST'])
 def rejestracja():
     if 'logged_in' in session and session['logged_in']:
@@ -237,6 +208,68 @@ def rejestracja():
         return redirect(url_for('logowanie', success=True))
 
     return render_template("rejestracja.html")
+
+
+
+def aktualizuj_id():
+    cursor = connection.cursor()
+
+    # Pobierz wszystkie przestępstwa posortowane według ID
+    sql = "SELECT id FROM Przestępstwa ORDER BY id"
+    cursor.execute(sql)
+    przestepstwa = cursor.fetchall()
+
+    # Zaktualizuj ID przestępców w kolejności rosnącej
+    for i, przestepstwo in enumerate(przestepstwa, start=1):
+        sql = "UPDATE Przestępstwa SET id = %s WHERE id = %s"
+        val = (i, przestepstwo[0])
+        cursor.execute(sql, val)
+
+    connection.commit()
+    cursor.close()
+
+
+
+
+
+
+@app.route('/usun_przestepce', methods=['POST'])
+def usun_przestepce():
+    if 'logged_in' in session and session['logged_in']:
+        if request.method == 'POST':
+            przestepca_id = request.form["id"]
+
+            # Usunięcie wiersza na podstawie przekazanego ID
+            cursor = connection.cursor()
+            sql = "DELETE FROM Przestępstwa WHERE id = %s"
+            val = (przestepca_id,)
+            cursor.execute(sql, val)
+            connection.commit()
+            cursor.close()
+
+            # Aktualizuj ID przestępców
+            aktualizuj_id()
+
+            # Przekierowanie na stronę edytuj.html
+            return redirect(url_for('usun'))
+    else:
+        return redirect(url_for('logowanie'))
+
+
+#tutaj przycisk juz w edycji ktory bedzie edytowal
+@app.route('/usun', methods=['GET'])
+def usun():
+    if 'logged_in' in session and session['logged_in']:
+        cursor = connection.cursor()
+        sql = "SELECT id, imie, nazwisko FROM Przestępstwa"
+        cursor.execute(sql)
+        przestepcy = cursor.fetchall()
+        cursor.close()
+
+        return render_template('usun.html', przestepcy=przestepcy)
+    else:
+        return redirect(url_for('logowanie'))
+
 
 if __name__ == '__main__':
     app.run()

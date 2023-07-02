@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Rejestracja</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/logowanie.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rejestracja.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@200&display=swap" rel="stylesheet">
@@ -13,19 +13,21 @@
         <div class="header-text">
             <h1><span class="header-text">CrimeMatch</span></h1>
         </div>
-        <button class="menu-toggle">Menu</button>
-        <nav class="nav-links">
-            <a href="#">Strona główna</a>
+        <div id="hamburger"><img src="{{ url_for('static', filename='finger.png') }}" height="100em" width="90em"></div>
+        <!-- <button class="menu-toggle">Menu</button> -->
+        <!--<nav class="nav-links">
+            <a href="{{ url_for('home') }}">Strona główna</a>
             <a href="{{ url_for('szukaj_przestepstwa') }}">Wyszukaj Przestępstwo</a>
-            <a href="{{ url_for('dodaj_przestepce') }}">Dodaj Przestępstwo</a>
-            <!-- <a href="{{ url_for('wyloguj') }}">Wyloguj</a> -->
-        </nav>
+            <a href="{{ url_for('dodaj_przestepce') }}">Formularz Zgłoszeń</a>
+            <a href="{{ url_for('usun') }}"style="color:white">Usuń przestepcę</a>
+             <a href="{{ url_for('wyloguj') }}">Wyloguj</a> 
+        </nav>-->
     </header>
     <h1>Rejestracja</h1>
     {% if error %}
     <p class="error">Użytkownik o podanej nazwie już istnieje.</p>
     {% endif %}
-    
+    <h1>Zarejestruj się: </h1>
     <form method="POST" action="{{ url_for('rejestracja') }}">
         <label for="username">Nazwa użytkownika:</label><br>
         <input type="text" id="username" name="username" required><br>

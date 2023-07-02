@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/szukaj.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logowanie.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@200&display=swap" rel="stylesheet">
@@ -13,11 +13,12 @@
         <div class="header-text">
             <h1><span class="header-text">CrimeMatch</span></h1>
         </div>
-        <button class="menu-toggle">Menu</button>
+        <!-- <button class="menu-toggle">Menu</button> -->
         <nav class="nav-links">
-            <a href="#">Strona główna</a>
-            <a href="{{ url_for('szukaj_przestepstwa') }}">Wyszukaj Przestępstwo</a>
-            <a href="{{ url_for('dodaj_przestepce') }}">Dodaj Przestępstwo</a>
+            <a href="{{ url_for('home') }}">Strona główna</a>
+            <!-- <a href="{{ url_for('szukaj_przestepstwa') }}">Wyszukaj Przestępstwo</a> -->
+            <a href="{{ url_for('dodaj_przestepce') }}">Formularz Zgłoszeń</a>
+            <a href="{{ url_for('usun') }}"style="color:white">Usuń przestepcę</a>
             <a href="{{ url_for('wyloguj') }}">Wyloguj</a>
         </nav>
     </header>

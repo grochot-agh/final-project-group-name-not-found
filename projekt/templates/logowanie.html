@@ -6,20 +6,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@200&display=swap" rel="stylesheet">
     <title>Logowanie</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/logowanie.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rejestracja.css') }}">
 </head>
 <body>
     <header>
         <div class="header-text">
             <h1><span class="header-text">CrimeMatch</span></h1>
         </div>
-        <button class="menu-toggle">Menu</button>
-        <nav class="nav-links">
-            <a href="#">Strona główna</a>
+        <div id="hamburger"><img src="{{ url_for('static', filename='finger.png') }}" height="100em" width="90em"></div>
+        <!-- <button class="menu-toggle">Menu</button> -->
+        <!--<nav class="nav-links">
+            <a href="{{ url_for('home') }}">Strona główna</a>
             <a href="{{ url_for('szukaj_przestepstwa') }}">Wyszukaj Przestępstwo</a>
-            <a href="{{ url_for('dodaj_przestepce') }}">Dodaj Przestępstwo</a>
-            <!-- <a href="{{ url_for('wyloguj') }}">Wyloguj</a> -->
-        </nav>
+            <a href="{{ url_for('dodaj_przestepce') }}">Formularz Zgłoszeń</a>
+            <a href="{{ url_for('usun') }}"style="color:white">Usuń przestepcę</a>
+             <a href="{{ url_for('wyloguj') }}">Wyloguj</a>
+        </nav> -->
     </header>
     <h1>Logowanie</h1>
     {% if error %}
@@ -28,6 +30,7 @@
     {% if success %}
     <p class="success">Rejestracja zakończona pomyślnie. Możesz się teraz zalogować.</p>
     {% endif %}
+    <h1>Zaloguj się: </h1>
     <form method="POST" action="{{ url_for('zaloguj') }}">
         <label for="username">Nazwa użytkownika:</label>
         <input type="text" id="username" name="username" required><br>
@@ -35,7 +38,7 @@
         <input type="password" id="password" name="password" required><br>
         <button type="submit">Zaloguj</button>
     </form>
-    <p>Załóż nowe konto <a href="{{ url_for('rejestracja') }}" style="color:white">Zarejestruj się</a></p>
+    <p>Nie masz konta? <a href="{{ url_for('rejestracja') }}" style="color:white">Zarejestruj się</a></p>
     <nav>
     <div class="image-container">
         <img src="{{ url_for('static', filename='zdjecie1.png') }}" alt="Zdjęcie" width="1200" height="800">
