@@ -26,7 +26,7 @@
 ## Project Overview 🎉
 Projekt miał na celu stworzenie responsywnej aplikacji webowej, umożliwiającej użytkownikom
 wyszukiwanie i wprowadzanie informacji o przestępstwach za pomocą formularza. Wprowadzone
-dane zostają zapisane w bazie danych SQL. Użytkownicy mają dostęp tylko do odpowiednich funkcji po zalogowaniu.  Dane są porównywane z innymi zgłoszeniami w bazie w celu znalezienia podobnych przypadków. Wyświetlane zostają odpowiednio posortowane dane przestępców i data przestępstwa. .<br>
+dane zostają zapisane w bazie danych SQL. Użytkownicy mają dostęp tylko do odpowiednich funkcji po zalogowaniu.  Dane są porównywane z innymi zgłoszeniami w bazie w celu znalezienia podobnych przypadków. Wyświetlane zostają odpowiednio posortowane dane przestępców i data przestępstwa.<br>
 Główne funkcje projektu obejmują:<br>
 <strong>Formularz zgłoszeń:</strong> Zalogowany użytkownik może wprowadzać informacje dotyczące przestępstwa za pomocą intuicyjnego formularza. Formularz wymaga podstawowych informacji o popełnionym przestępstwie. Umożliwia wprowadzenie danych takich jak imię, nazwisko, wiek, miejsce zamieszkania, data przestępstwa, rodzaj przestępstwa, miejsce, pora oraz broń użyta przez przestępcę.<br>
 <strong>Wyszukiwanie Przestępców:</strong> Użytownik może wprowadzić informacje dotyczące sprawy nad którą pracuje, aby wyszukać przestępców o najlepszym dopasowaniu. Użytkownik może wyszukiwać przestępstwa na podstawie określonych kryteriów, takich jak rodzaj przestępstwa, miejsce, pora oraz broń. Wyniki wyszukiwania są sortowane według odpowiednio dobranych wag dla każdego kryterium, a następnie wyświetlane.<br>
