@@ -35,7 +35,8 @@ Główne funkcje projektu obejmują:<br>
 
 ## Tech/framework used 🔧
 
-| Technologie                                             |                                    |
+| Technologie                                             |                                  
+
 | Aplikacja CrimeMatch łączy Python, Flask, MySQL oraz HTML/CSS w celu stworzenia funkcjonalnego systemu zarządzania przestępstwami opartego na stronie internetowej.|<br>
 | [Python](X)                           | Aplikacja została stworzona przy użyciu języka programowania Python.  |<br>
 | [Flask](X)                           |  Flask jest frameworkiem webowym dla języka Python, który zapewnia narzędzia i biblioteki do budowy aplikacji internetowych. Jest używany do obsługi trasowania, obsługi żądań oraz renderowania szablonów w tej aplikacji.   |<br>
