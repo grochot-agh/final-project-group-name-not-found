@@ -35,11 +35,11 @@ Główne funkcje projektu obejmują:<br>
 
 ## Tech/framework used 🔧
 
-| Technologie                                             | Opis                                     |
-| Aplikacja CrimeMatch łączy Python, Flask, MySQL oraz HTML/CSS w celu stworzenia funkcjonalnego systemu zarządzania przestępstwami opartego na stronie internetowej.|
-| [Python](X)                           | Aplikacja została stworzona przy użyciu języka programowania Python.  |
-| [Flask](X)                           |  Flask jest frameworkiem webowym dla języka Python, który zapewnia narzędzia i biblioteki do budowy aplikacji internetowych. Jest używany do obsługi trasowania, obsługi żądań oraz renderowania szablonów w tej aplikacji.   |
-| [MySQL](X)                           | Aplikacja korzysta z MySQL jako systemu zarządzania bazą danych do przechowywania danych dotyczących przestępstw i użytkowników. Nawiązuje połączenie z serwerem MySQL przy użyciu biblioteki mysql.connector.  |
+| Technologie                                             |                                    |
+| Aplikacja CrimeMatch łączy Python, Flask, MySQL oraz HTML/CSS w celu stworzenia funkcjonalnego systemu zarządzania przestępstwami opartego na stronie internetowej.|<br>
+| [Python](X)                           | Aplikacja została stworzona przy użyciu języka programowania Python.  |<br>
+| [Flask](X)                           |  Flask jest frameworkiem webowym dla języka Python, który zapewnia narzędzia i biblioteki do budowy aplikacji internetowych. Jest używany do obsługi trasowania, obsługi żądań oraz renderowania szablonów w tej aplikacji.   |<br>
+| [MySQL](X)                           | Aplikacja korzysta z MySQL jako systemu zarządzania bazą danych do przechowywania danych dotyczących przestępstw i użytkowników. Nawiązuje połączenie z serwerem MySQL przy użyciu biblioteki mysql.connector.  |<br>
 | [HTML/CSS](X)                           | Front-end aplikacji został zbudowany przy użyciu HTML do strukturyzacji stron internetowych oraz CSS do stylizacji i układu.  |
 
 
@@ -60,18 +60,16 @@ Główne funkcje projektu obejmują:<br>
     <img src="https://github.com/grochot-agh/final-project-group-name-not-found/blob/main/projekt/static/usun.png" alt="Screenshot">
 </p>
 
-## Fragmenty kodu 🔍
-
 
 ## Instalacja 💾
 Aby uruchomić aplikację, należy najpierw zainstalować niezbędne zależności i upewnić się, że jesteś połączony z VPN AGH. Można to zrobić, wykonując następujące kroki:
 
-Krok 1: Upewnij się, że masz zainstalowany Python w wersji 3.x. 
-Krok 2: Połącz się z VPN AGH, aby uzyskać dostęp do bazy danych.
-Krok 3: Sklonuj repozytorium aplikacji z GitHuba lub pobierz i rozpakuj archiwum ZIP.
-Krok 4: Przejdź do katalogu głównego aplikacji.
-Krok 5: Zainstaluj niezbędne zależności, korzystając z menadżera pakietów pip.
-Krok 6: Uruchom aplikację.
+Krok 1: Upewnij się, że masz zainstalowany Python w wersji 3.x. <br>
+Krok 2: Połącz się z VPN AGH, aby uzyskać dostęp do bazy danych.<br>
+Krok 3: Sklonuj repozytorium aplikacji z GitHuba lub pobierz i rozpakuj archiwum ZIP.<br>
+Krok 4: Przejdź do katalogu głównego aplikacji.<br>
+Krok 5: Zainstaluj niezbędne zależności, korzystając z menadżera pakietów pip.<br>
+Krok 6: Uruchom aplikację.<br>
 Po wykonaniu tych kroków aplikacja powinna być dostępna pod adresem http://localhost:5000 w przeglądarce internetowej. Upewnij się, że jesteś nadal połączony z VPN AGH, aby aplikacja mogła prawidłowo korzystać z bazy danych.
 
 
