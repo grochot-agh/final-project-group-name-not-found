@@ -24,23 +24,23 @@
 </p>
 
 ## Project Overview 🎉
-Projekt ma na celu stworzenie responsywnej aplikacji webowej, umożliwiającej użytkownikom
+Projekt miał na celu stworzenie responsywnej aplikacji webowej, umożliwiającej użytkownikom
 wyszukiwanie i wprowadzanie informacji o przestępstwach za pomocą formularza. Wprowadzone
-dane zostają zapisane w bazie danych SQL. Następnie dane te są porównywane z innymi
-zgłoszeniami w bazie w celu znalezienia podobnych przypadków.<br>
+dane zostają zapisane w bazie danych SQL. Użytkownicy mają dostęp tylko do odpowiednich funkcji po zalogowaniu.  Dane są porównywane z innymi zgłoszeniami w bazie w celu znalezienia podobnych przypadków. Wyświetlane zostają odpowiednio posortowane dane przestępców i data przestępstwa. .<br>
 Główne funkcje projektu obejmują:<br>
-<strong>Formularz zgłoszeń:</strong> Użytkownik może wprowadzać informacje dotyczące przestępstwa za pomocą intuicyjnego formularza. Formularz wymaga podstawowych informacji o popełnionym przestępstwie.<br>
-<strong>Wyszukiwanie Przestępców:</strong> Użytownik może wprowadzić informacje dotyczące sprawy nad którą pracuje aby wyszukać przestępców o najlepszym dopasowaniu.<br>
-<strong>Usuwanie wyników:</strong> Jeśli zostaną wprowadzone błędne dane użytkownik może je w każdej chwili usunąć.
+<strong>Formularz zgłoszeń:</strong> Zalogowany użytkownik może wprowadzać informacje dotyczące przestępstwa za pomocą intuicyjnego formularza. Formularz wymaga podstawowych informacji o popełnionym przestępstwie. Umożliwia wprowadzenie danych takich jak imię, nazwisko, wiek, miejsce zamieszkania, data przestępstwa, rodzaj przestępstwa, miejsce, pora oraz broń użyta przez przestępcę.<br>
+<strong>Wyszukiwanie Przestępców:</strong> Użytownik może wprowadzić informacje dotyczące sprawy nad którą pracuje, aby wyszukać przestępców o najlepszym dopasowaniu. Użytkownik może wyszukiwać przestępstwa na podstawie określonych kryteriów, takich jak rodzaj przestępstwa, miejsce, pora oraz broń. Wyniki wyszukiwania są sortowane według odpowiednio dobranych wag dla każdego kryterium, a następnie wyświetlane.<br>
+<strong>Usuwanie wyników:</strong> Jeśli zostaną wprowadzone błędne dane zalogowany użytkownik może je w każdej chwili usunąć. W widoku usuwania przestępców wyświetlana jest lista przestępców z ich identyfikatorami, imionami i nazwiskami. Po wybraniu przestępcy do usunięcia, zostaje on usunięty z bazy danych, a następnie aktualizowane są identyfikatory przestępców.<br>
 
 
 ## Tech/framework used 🔧
 
 | Technologie                                             | Opis                                     |
-| ------------------------------------------------------- | ---------------------------------------- |
-| [HTML](X)                           | opis   |
-| [JavaScript](X)                           | XYZ   |
-| [CSS](X)                           | stosowany do opisu wyglądu i formatowania dokumentów HTML   |
+| Aplikacja CrimeMatch łączy Python, Flask, MySQL oraz HTML/CSS w celu stworzenia funkcjonalnego systemu zarządzania przestępstwami opartego na stronie internetowej.|
+| [Python](X)                           | Aplikacja została stworzona przy użyciu języka programowania Python.  |
+| [Flask](X)                           |  Flask jest frameworkiem webowym dla języka Python, który zapewnia narzędzia i biblioteki do budowy aplikacji internetowych. Jest używany do obsługi trasowania, obsługi żądań oraz renderowania szablonów w tej aplikacji.   |
+| [MySQL](X)                           | Aplikacja korzysta z MySQL jako systemu zarządzania bazą danych do przechowywania danych dotyczących przestępstw i użytkowników. Nawiązuje połączenie z serwerem MySQL przy użyciu biblioteki mysql.connector.  |
+| [HTML/CSS](X)                           | Front-end aplikacji został zbudowany przy użyciu HTML do strukturyzacji stron internetowych oraz CSS do stylizacji i układu.  |
 
 
 ## Screenshots 📺
@@ -64,6 +64,17 @@ Główne funkcje projektu obejmują:<br>
 
 
 ## Instalacja 💾
+Aby uruchomić aplikację, należy najpierw zainstalować niezbędne zależności i upewnić się, że jesteś połączony z VPN AGH. Można to zrobić, wykonując następujące kroki:
+
+Krok 1: Upewnij się, że masz zainstalowany Python w wersji 3.x. 
+Krok 2: Połącz się z VPN AGH, aby uzyskać dostęp do bazy danych.
+Krok 3: Sklonuj repozytorium aplikacji z GitHuba lub pobierz i rozpakuj archiwum ZIP.
+Krok 4: Przejdź do katalogu głównego aplikacji.
+Krok 5: Zainstaluj niezbędne zależności, korzystając z menadżera pakietów pip.
+Krok 6: Uruchom aplikację.
+Po wykonaniu tych kroków aplikacja powinna być dostępna pod adresem http://localhost:5000 w przeglądarce internetowej. Upewnij się, że jesteś nadal połączony z VPN AGH, aby aplikacja mogła prawidłowo korzystać z bazy danych.
+
+
 
 ## Available scripts
 
@@ -72,8 +83,3 @@ Główne funkcje projektu obejmują:<br>
 | `npm run start`           | Open local server             |     |
 | `npm run build`           | Create optimized build        |     |
 | `npm run test`            | Run tests                     |     |
-
-
-## Live 📍
-
-## License 🔱

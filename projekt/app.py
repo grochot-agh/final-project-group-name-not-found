@@ -229,10 +229,6 @@ def aktualizuj_id():
     cursor.close()
 
 
-
-
-
-
 @app.route('/usun_przestepce', methods=['POST'])
 def usun_przestepce():
     if 'logged_in' in session and session['logged_in']:
@@ -256,7 +252,7 @@ def usun_przestepce():
         return redirect(url_for('logowanie'))
 
 
-#tutaj przycisk juz w edycji ktory bedzie edytowal
+
 @app.route('/usun', methods=['GET'])
 def usun():
     if 'logged_in' in session and session['logged_in']:
