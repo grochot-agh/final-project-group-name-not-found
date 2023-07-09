@@ -14,7 +14,7 @@
 
 </h1>
 
-<h4 align="center">CrimeMatch</h4>
+<h4 align="center">CrimeMatch Marek Borgieł</h4>
 
 <p align="center">
   <a >
